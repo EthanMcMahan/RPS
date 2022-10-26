@@ -54,10 +54,14 @@ playRound(userChoice, computerChoice);
 //score user: 1, computer:0
 //count is only new variable, which is score
 
+let score = 0;
+let userScore = 0;
+let compScore = 0;
+
 function game() {
   for (let round = 0; round <= 5; round++) {
-  playRound(userChoice, computerChoice);
   console.log(round);
-}
-}
+  playRound(userChoice, computerChoice);
+  }
+  }
 game();
