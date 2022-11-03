@@ -14,7 +14,7 @@ function getComputerChoice() {
     let randomNumber = (Math.floor(Math.random() * 3))
     return choices[randomNumber];
   }
-//refactored with an array inside of if/ else if statements
+//refactored with an array instead of if/ else if statements
 
 //create function playRound with parameters (playerSelection and computeSelection)
 //use if else if and else conditionals to play out all the possible scenerios for one round of game
@@ -33,13 +33,18 @@ function playRound(playerSelection, computerSelection) {
 	   ((playerSelection == 'Paper') && (computerSelection == 'Rock'))      ||
 	   ((playerSelection == 'Scissors') && (computerSelection == 'Paper'))) {
 		console.log(`You win! ${playerSelection} beats ${computerSelection}`);
+    round.innerHTML = `You win! ${playerSelection} beats ${computerSelection}`;
     userScore++;
 	} else if (playerSelection == computerSelection) {
 		console.log("Tie!");
+    round.innerHTML = "Tie!";
 	} else {
 		console.log(`You lose! ${computerSelection} beats ${playerSelection}`);
+    round.innerHTML = `You lose! ${computerSelection} beats ${playerSelection}`;
     computerScore++;
+    
 	}
+    score.innerHTML = `<strong>userScore:</strong> ${userScore} <strong>computerScore:</strong> ${computerScore}`;
 }
 
 
@@ -68,10 +73,11 @@ game();*/
 }
 game(playRound);*/  
 
-function game() {
-  for (let round = 0; round < 5; round ++) {
+/*function game() {
+  for (let round = 0; round < 1; round ++) {
     console.log(round);
-    let userChoice = (prompt ("Enter Rock, Paper, or Scissors"));
+    //let userChoice = (prompt ("Enter Rock, Paper, or Scissors"));
+    let userChoice = "Rock";
     console.log("user", userChoice);
     let computerChoice = getComputerChoice();
     console.log("computer", computerChoice);
@@ -86,5 +92,24 @@ function game() {
     } else {
       return "You Tie!";
     }
-}
-console.log(game());
+}*/
+//console.log(game());
+const rockButton = document.querySelector("#rock")
+rockButton.addEventListener("click", function(){
+  let computerChoice = getComputerChoice();
+  playRound("Rock", computerChoice);
+});
+
+const paperButton = document.querySelector("#paper")
+paperButton.addEventListener("click", function(){
+  let computerChoice = getComputerChoice();
+  playRound("Paper", computerChoice);
+});
+
+const scissorsButton = document.querySelector("#scissors")
+scissorsButton.addEventListener("click", function(){
+  let computerChoice = getComputerChoice();
+  playRound("Scissors", computerChoice);
+});
+
+const round = document.querySelector("#round")
